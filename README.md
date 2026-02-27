@@ -33,17 +33,18 @@ The system performs preprocessing, generates perceptual hashes, and compares ima
 ---
 
 ## Project Structure
-Duplicate_Detector/
+duplicate_Detector/
 │
-├── dup_detect.py
+├── src/
+│   └── dup_detect.py
+│
+├── images/              # Sample images (optional)
+│   └── .gitkeep
+│
 ├── requirements.txt
-├── images/
-│ ├── image1.jpg
-│ ├── image2.jpg
-| ├── image3.jpg
-│ └── image4.jpg
-│
-└── README.md
+├── README.md
+├── .gitignore
+└── LICENSE
 
 
 Place all images to be analyzed inside the `images/` directory.
@@ -55,7 +56,7 @@ Place all images to be analyzed inside the `images/` directory.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
+git clone <https://github.com/AmanDev17/duplicate_detector/tree/main>
 cd Duplicate_Detector
 ```
 ## Requirements
