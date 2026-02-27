@@ -66,93 +66,93 @@ To run this Script
 ```bash
 python dup_detect.py
 ```
-The script will:
 
-Load all supported images from the images/ folder
+## Script Workflow
 
-Preprocess each image (grayscale conversion, normalization, resize, blur)
+1. Load all supported images from the `images/` folder.  
+2. Preprocess each image (grayscale conversion, normalization, resize, blur).  
+3. Generate perceptual hashes for multiple rotations (0°, 90°, 180°, 270°).  
+4. Compute pairwise Hamming distances between image hashes.  
+5. Report duplicate image pairs based on the configured threshold.  
 
-Generate perceptual hashes for multiple rotations
+---
 
-Compute pairwise Hamming distances
+## Configuration
 
-Report duplicate image pairs based on the configured threshold
+Inside `dup_detect.py`:
 
-Configuration
-
-Inside dup_detect.py:
-
+```python
 IMAGE_FOLDER = "images"
 HASH_SIZE = 16
 HAMMING_THRESHOLD = 30
-Threshold Guide
-Threshold Range	Sensitivity Level
-10–15	Very strict
-20–30	Balanced (Recommended)
-40–50	Very lenient
+```
 
-Lower threshold values increase strictness.
+### Threshold Guide
+
+1. **10–15** → Very strict  
+2. **20–30** → Balanced (Recommended)  
+3. **40–50** → Very lenient  
+
+Lower threshold values increase strictness.  
 Higher threshold values increase tolerance to brightness and rotation variations.
 
-How It Works
+---
 
-Convert image to grayscale
+## How It Works
 
-Normalize brightness using histogram equalization
-
-Resize while preserving aspect ratio with padding
-
-Apply Gaussian blur to reduce noise
-
-Compute perceptual hash (pHash) using Discrete Cosine Transform (DCT)
-
-Compare image hashes using Hamming distance
-
-Evaluate multiple rotation variants for robustness
+1. Convert image to grayscale.  
+2. Normalize brightness using histogram equalization.  
+3. Resize while preserving aspect ratio using padding.  
+4. Apply Gaussian blur to reduce noise.  
+5. Compute perceptual hash (pHash) using Discrete Cosine Transform (DCT).  
+6. Compare image hashes using Hamming distance.  
+7. Evaluate multiple rotation variants for robustness.  
 
 Lower Hamming distance indicates higher similarity.
 
-Example Output
+---
+
+## Example Output
+
+```bash
 image1.jpg  <-->  image2.jpg  | Distance: 12
 Duplicate: image1.jpg is similar to image2.jpg (Distance: 12)
-Supported Image Formats
+```
 
-.jpg
+---
 
-.jpeg
+## Supported Image Formats
 
-.png
+1. `.jpg`  
+2. `.jpeg`  
+3. `.png`  
+4. `.bmp`  
+5. `.tiff`  
 
-.bmp
+---
 
-.tiff
+## Use Cases
 
-Use Cases
+1. Dataset cleaning  
+2. Photo library deduplication  
+3. Document scanning cleanup  
+4. AI training data preprocessing  
+5. Digital archive management  
 
-Dataset cleaning
+---
 
-Photo library deduplication
+## Future Improvements
 
-Document scanning cleanup
+1. Graphical User Interface (GUI)  
+2. Recursive folder scanning  
+3. Automated duplicate removal option  
+4. Hybrid similarity scoring (pHash + SSIM)  
+5. Cloud-based processing version  
+6. GPU acceleration  
 
-AI training data preprocessing
+---
 
-Digital archive management
+## License
 
-Future Improvements
-
-Graphical User Interface (GUI)
-
-Recursive folder scanning
-
-Automated duplicate removal option
-
-Hybrid similarity scoring (pHash + SSIM)
-
-Cloud-based processing version
-
-GPU acceleration
-
-License
-
-This project is open-source and intended for educational and research purposes.
+1. This project is open-source.  
+2. Intended for educational and research purposes.  
