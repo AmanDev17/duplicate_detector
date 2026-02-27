@@ -1,73 +1,96 @@
-🖼️ Duplicate Image Detector (pHash + OpenCV)
+# Duplicate Image Detector (pHash + OpenCV)
 
-A robust local duplicate image detection tool built using Python, OpenCV, and Perceptual Hashing (pHash).
-It detects visually similar images even if they differ in brightness, rotation, scaling, or minor distortions.
+## Overview
 
-🚀 Features
+This project is a robust local duplicate image detection tool built using Python, OpenCV, and Perceptual Hashing (pHash). It detects visually similar images even if they differ in brightness, rotation, scaling, or minor distortions.
 
-✅ Perceptual Hashing (pHash)
+The system performs preprocessing, generates perceptual hashes, and compares images using Hamming distance to determine similarity.
 
-✅ Hamming Distance similarity comparison
+---
 
-✅ Brightness normalization
+## Features
 
-✅ Rotation handling (0°, 90°, 180°, 270°)
+- Perceptual Hashing (pHash) for visual similarity detection  
+- Hamming Distance–based comparison  
+- Brightness normalization using histogram equalization  
+- Rotation handling (0°, 90°, 180°, 270°)  
+- Aspect ratio–preserving resizing with padding  
+- Noise reduction using Gaussian blur  
+- Adjustable similarity threshold  
+- Local folder-based batch processing  
+- Lightweight and efficient execution  
 
-✅ Resizing & blur preprocessing
+---
 
-✅ Adjustable similarity threshold
+## Technology Stack
 
-✅ Local folder-based detection
+- Python 3.8+
+- OpenCV
+- Pillow
+- NumPy
+- ImageHash
 
-✅ Lightweight & fast
+---
 
-🛠 Tech Stack
-
-Python 3.8+
-
-OpenCV
-
-Pillow (optional for extended image support)
-
-NumPy
-
-📂 Project Structure
+## Project Structure
 Duplicate_Detector/
 │
 ├── dup_detect.py
+├── requirements.txt
 ├── images/
-│   ├── img1.jpg
-│   ├── img2.jpg
-│   ├── img3.png
+│ ├── image1.jpg
+│ ├── image2.jpg
+| ├── image3.jpg
+│ └── image4.jpg
 │
 └── README.md
 
-Place all images you want to compare inside the images/ folder.
 
-⚙️ Installation
+Place all images to be analyzed inside the `images/` directory.
 
-Install dependencies:
+---
 
-pip install opencv-python pillow numpy
-▶️ Usage
+## Installation
 
-Run the script:
+### 1. Clone the Repository
 
+```bash
+git clone <your-repository-url>
+cd Duplicate_Detector
+```
+## Requirements
+
+This project includes a `requirements.txt` file to simplify dependency management and ensure consistent environments across systems.
+
+### Installation
+
+Install all required dependencies using:
+
+```bash
+pip install -r requirements.txt
+```
+opencv-python>=4.8.0
+pillow>=10.0.0
+numpy>=1.24.0
+ImageHash>=4.3.1
+
+To run this Script
+```bash
 python dup_detect.py
+```
+The script will:
 
-The script:
+Load all supported images from the images/ folder
 
-Loads all images from the images folder
+Preprocess each image (grayscale conversion, normalization, resize, blur)
 
-Preprocesses them (grayscale, normalize, resize, blur)
+Generate perceptual hashes for multiple rotations
 
-Generates perceptual hashes
+Compute pairwise Hamming distances
 
-Computes Hamming distance between each pair
+Report duplicate image pairs based on the configured threshold
 
-Flags duplicates based on threshold
-
-🔧 Configuration
+Configuration
 
 Inside dup_detect.py:
 
@@ -75,35 +98,48 @@ IMAGE_FOLDER = "images"
 HASH_SIZE = 16
 HAMMING_THRESHOLD = 30
 Threshold Guide
-Threshold	Sensitivity
+Threshold Range	Sensitivity Level
 10–15	Very strict
 20–30	Balanced (Recommended)
 40–50	Very lenient
 
-Increase threshold to detect brightness/rotation variants.
+Lower threshold values increase strictness.
+Higher threshold values increase tolerance to brightness and rotation variations.
 
-🧠 How It Works
+How It Works
 
-Converts image to grayscale
+Convert image to grayscale
 
-Normalizes brightness
+Normalize brightness using histogram equalization
 
-Resizes to fixed dimensions
+Resize while preserving aspect ratio with padding
 
-Applies blur
+Apply Gaussian blur to reduce noise
 
-Computes pHash via DCT
+Compute perceptual hash (pHash) using Discrete Cosine Transform (DCT)
 
-Compares hashes using Hamming distance
+Compare image hashes using Hamming distance
 
-Checks multiple rotations for robustness
+Evaluate multiple rotation variants for robustness
 
-Lower Hamming distance = more similar images.
+Lower Hamming distance indicates higher similarity.
 
-📌 Example Output
-img1.jpg <-> img2.jpg | Distance: 12 | DUPLICATE
-img1.jpg <-> img3.jpg | Distance: 45 | Different
-🎯 Use Cases
+Example Output
+image1.jpg  <-->  image2.jpg  | Distance: 12
+Duplicate: image1.jpg is similar to image2.jpg (Distance: 12)
+Supported Image Formats
+
+.jpg
+
+.jpeg
+
+.png
+
+.bmp
+
+.tiff
+
+Use Cases
 
 Dataset cleaning
 
@@ -111,24 +147,24 @@ Photo library deduplication
 
 Document scanning cleanup
 
-AI training data filtering
+AI training data preprocessing
 
-Archive management
+Digital archive management
 
-📈 Future Improvements
+Future Improvements
 
-GUI interface
+Graphical User Interface (GUI)
 
 Recursive folder scanning
 
-Batch deletion option
+Automated duplicate removal option
 
-SSIM hybrid scoring
+Hybrid similarity scoring (pHash + SSIM)
 
-Cloud version
+Cloud-based processing version
 
 GPU acceleration
 
-📄 License
+License
 
-Open-source for educational and research use.
+This project is open-source and intended for educational and research purposes.
